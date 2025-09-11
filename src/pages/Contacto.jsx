@@ -1,50 +1,16 @@
-function Contacto() {
+export default function Contacto() {
   return (
-    <div className="pt-20 container mx-auto px-6">
-      <h1 className="text-4xl font-bold text-gray-800 text-center">
-        Contáctanos
-      </h1>
-      <p className="text-gray-600 text-center mt-2">
-        Estamos aquí para resolver tus dudas y asesorarte
-      </p>
-
-      <form className="max-w-lg mx-auto mt-10 bg-white shadow-md rounded-2xl p-6 space-y-4">
-        <div>
-          <label className="block text-gray-700 font-medium">Nombre</label>
-          <input
-            type="text"
-            className="w-full border rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="Tu nombre"
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 font-medium">Correo</label>
-          <input
-            type="email"
-            className="w-full border rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="ejemplo@email.com"
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 font-medium">Mensaje</label>
-          <textarea
-            rows="4"
-            className="w-full border rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="Escribe tu mensaje..."
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
-        >
-          Enviar
-        </button>
-      </form>
+    <div className="p-6 text-center">
+      <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
+      <p className="text-gray-700">Escríbenos a nuestro WhatsApp:</p>
+      <a
+        href="https://wa.me/19804512334"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-3 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+      >
+        +1 980 451 2334
+      </a>
     </div>
   );
 }
-
-export default Contacto;

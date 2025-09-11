@@ -1,30 +1,48 @@
-import React from 'react'
-import { ShoppingCart, Home, Package, Wrench, Phone } from 'lucide-react'
+iimport { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
-export default function Navbar({count,onOpen}){
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="sticky top-0 z-40 bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[var(--brand-blue)] flex items-center justify-center text-white font-bold">DT</div>
-          <div>
-            <div className="text-lg font-bold" style={{color:'var(--brand-blue)'}}>DomoraTech</div>
-            <div className="text-xs text-slate-500">Conecta tu mundo</div>
-          </div>
+    <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
+      <nav className="container mx-auto flex justify-between items-center py-4 px-6">
+        {/* Logo */}
+        <Link to="/" className="text-2xl font-bold text-blue-600">
+          DomoraTech
+        </Link>
+
+        {/* Menu Desktop */}
+        <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
+          <li><Link to="/" className="hover:text-blue-600">Inicio</Link></li>
+          <li><Link to="/productos" className="hover:text-blue-600">Productos</Link></li>
+          <li><Link to="/nosotros" className="hover:text-blue-600">Nosotros</Link></li>
+          <li><Link to="/contacto" className="hover:text-blue-600">Contacto</Link></li>
+        </ul>
+
+        {/* Botón Hamburguesa */}
+        <button
+          className="md:hidden text-gray-700"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </nav>
+
+      {/* Menú Mobile */}
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-lg border-t">
+          <ul className="flex flex-col items-center gap-4 py-6 text-gray-700 font-medium">
+            <li><Link to="/" onClick={() => setIsOpen(false)}>Inicio</Link></li>
+            <li><Link to="/productos" onClick={() => setIsOpen(false)}>Productos</Link></li>
+            <li><Link to="/nosotros" onClick={() => setIsOpen(false)}>Nosotros</Link></li>
+            <li><Link to="/contacto" onClick={() => setIsOpen(false)}>Contacto</Link></li>
+          </ul>
         </div>
-        <div className="hidden md:flex items-center gap-6 text-slate-700">
-          <a href="#" className="flex items-center gap-2"><Home size={16}/> Inicio</a>
-          <a href="#productos" className="flex items-center gap-2"><Package size={16}/> Productos</a>
-          <a href="#arma" className="flex items-center gap-2"><Wrench size={16}/> Arma tu kit</a>
-          <a href="#contacto" className="flex items-center gap-2"><Phone size={16}/> Contacto</a>
-        </div>
-        <div className="flex items-center gap-3">
-          <button onClick={onOpen} className="relative p-2 rounded-lg bg-slate-100 hover:bg-slate-200">
-            <ShoppingCart size={20}/>
-            {count>0 && <span className="absolute -top-2 -right-2 bg-[var(--brand-green)] text-white text-xs px-2 py-0.5 rounded-full">{count}</span>}
-          </button>
-        </div>
-      </div>
-    </nav>
-  )
+      )}
+    </header>
+  );
 }
+
+export default Navbar;
